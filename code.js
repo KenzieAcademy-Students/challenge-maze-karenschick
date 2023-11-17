@@ -66,16 +66,19 @@ const mazeMap2 = [
 
 // Your Code Here.
 
-const mazeDiv1 = document.getElementById("maze-div1");
-const mazeDiv2 = document.getElementById("maze-div2");
+const maps = [mazeMap1, mazeMap2];
+let currentMap = 0;
+let playerPosition = { x: -1, y: -1 }; // Initialize with default values
+const mazeDiv = document.getElementById("maze-div1");
 
-function displayMaze(maze, mazeDiv) {
+function displayMaze() {
   mazeDiv.innerHTML = "";
-  maze.forEach((row) => {
-    const rowDiv = document.createElement("div")
-    rowDiv.classList.add("maze-row")
-    
-    row.split("").forEach((blockStyle) => {
+
+  maps[currentMap].forEach((row, rowIndex) => {
+    const rowDiv = document.createElement("div");
+    rowDiv.classList.add("maze-row");
+
+    row.split("").forEach((blockStyle, columnIndex) => {
       const block = document.createElement("div");
       block.classList.add("block");
 
@@ -88,6 +91,7 @@ function displayMaze(maze, mazeDiv) {
           break;
         case "S":
           block.classList.add("start");
+          playerPosition = { x: columnIndex, y: rowIndex }; // Update player position
           break;
         case "F":
           block.classList.add("finish");
@@ -99,62 +103,49 @@ function displayMaze(maze, mazeDiv) {
   });
 }
 
-document.addEventListener("keydown", (event) =>
-  movePlayer(event, mazeMap1, mazeDiv1)
-);
-document.addEventListener("keydown", (event) =>
-  movePlayer(event, mazeMap2, mazeDiv2)
-);
+function movePlayer(event) {
+  event.preventDefault();
 
-function movePlayer(event, maze, mazeDiv) {
-  const playerBlock = mazeDiv.querySelector(".start");
-  const rowIndex = playerBlock.parentNode.rowIndex;
-  const blockIndex = Array.from(playerBlock.parentNode.children).indexOf(
-    playerBlock
-  );
+  if (playerPosition.x === -1 || playerPosition.y === -1) {
+    // Player position not properly initialized
+    return;
+  }
 
-  let newRow;
-  let newBlock;
+  let newRow = playerPosition.y;
+  let newBlock = playerPosition.x;
 
   switch (event.key) {
     case "ArrowLeft":
-      newRow = rowIndex;
-      newBlock = blockIndex - 1;
+      newBlock = playerPosition.x - 1;
       break;
     case "ArrowRight":
-      newRow = rowIndex;
-      newBlock = blockIndex + 1;
+      newBlock = playerPosition.x + 1;
       break;
     case "ArrowUp":
-      newRow = rowIndex - 1;
-      newBlock = blockIndex;
+      newRow = playerPosition.y - 1;
       break;
     case "ArrowDown":
-      newRow = rowIndex + 1;
-      newBlock = blockIndex;
+      newRow = playerPosition.y + 1;
       break;
   }
 
-  if (
-    newRow >= 0 &&
-    newRow < maze.length &&
-    newBlock >= 0 &&
-    newBlock < maze[newRow].length
-  ) {
-    const newBlockType = maze[newRow][newBlock];
+  const newBlockType = maps[currentMap][newRow][newBlock];
 
-    if (newBlockType === " " || newBlockType === "F") {
-      playerBlock.classList.remove("start");
-      mazeDiv.children[newRow * maze[0].length + newBlock].classList.add(
-        "start"
-      );
+  if (newBlockType !== "W") {
+    const currentPlayerBlock = mazeDiv.children[playerPosition.y].children[playerPosition.x];
+    currentPlayerBlock.classList.remove("start");
 
-      if (newBlockType === "F") {
-        //add toast
-      }
+    const newPlayerBlock = mazeDiv.children[newRow].children[newBlock];
+    newPlayerBlock.classList.add("start");
+
+    playerPosition = { x: newBlock, y: newRow }; // Update player position
+
+    if (newBlockType === "F") {
+      // Player reached the finish
+      alert("Congratulations! You reached the finish!");
     }
   }
 }
 
-displayMaze(mazeMap1, mazeDiv1);
-displayMaze(mazeMap2, mazeDiv2);
+document.addEventListener("keydown", movePlayer);
+displayMaze();
