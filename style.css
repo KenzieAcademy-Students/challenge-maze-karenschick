@@ -6,21 +6,20 @@
 .maze-div {
   display: grid;
   grid-template-columns: repeat(21, 30px);
-  
+  margin: 20px;
 }
 
 
 .block {
   width: 30px;
   height: 30px;
-  border: 1px solid black;
-  display: flex;
+
   align-items: center;
   justify-content: center;
 }
 
 .wall {
-  background-color: darkblue;
+  background-color: lightcyan;
 }
 
 .floor {
@@ -28,7 +27,7 @@
 }
 
 .start {
-  background-color: green;
+  background-color: lightgreen;
 }
 
 .finish {
