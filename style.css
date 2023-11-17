@@ -1,1 +1,40 @@
 /* Write your CSS Here. */
+* {
+  box-sizing: border-box;
+}
+
+.maze-div1 {
+  display: grid;
+  grid-template-columns: repeat(21, 40px);
+  
+}
+
+.maze-div2 {
+  display: grid;
+  grid-template-columns: repeat(21, 40px);
+}
+
+.block {
+  width: 30px;
+  height: 30px;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wall {
+  background-color: darkblue;
+}
+
+.floor {
+  background-color: white;
+}
+
+.start {
+  background-color: green;
+}
+
+.finish {
+  background-color: red;
+}
