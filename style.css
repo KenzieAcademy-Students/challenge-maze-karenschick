@@ -5,13 +5,13 @@
 
 .maze-div1 {
   display: grid;
-  grid-template-columns: repeat(21, 40px);
+  grid-template-columns: repeat(21, 30px);
   
 }
 
 .maze-div2 {
   display: grid;
-  grid-template-columns: repeat(21, 40px);
+  grid-template-columns: repeat(21, 30px);
 }
 
 .block {
