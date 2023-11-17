@@ -72,6 +72,9 @@ const mazeDiv2 = document.getElementById("maze-div2");
 function displayMaze(maze, mazeDiv) {
   mazeDiv.innerHTML = "";
   maze.forEach((row) => {
+    const rowDiv = document.createElement("div")
+    rowDiv.classList.add("maze-row")
+    
     row.split("").forEach((blockStyle) => {
       const block = document.createElement("div");
       block.classList.add("block");
@@ -90,8 +93,9 @@ function displayMaze(maze, mazeDiv) {
           block.classList.add("finish");
           break;
       }
-      mazeDiv.appendChild(block);
+      rowDiv.appendChild(block);
     });
+    mazeDiv.appendChild(rowDiv);
   });
 }
 
