@@ -1,4 +1,4 @@
- const mazeMapSample = [
+const mazeMapSample = [
   // FOR TESTING PURPOSES ONLY. Don't use this map
   "WWWWWWW", // as one of the choices in your game.
   "S W   W",
@@ -107,7 +107,6 @@ function movePlayer(event) {
   event.preventDefault();
 
   if (playerPosition.x === -1 || playerPosition.y === -1) {
-    // Player position not properly initialized
     return;
   }
 
@@ -132,19 +131,23 @@ function movePlayer(event) {
   const newBlockType = maps[currentMap][newRow][newBlock];
 
   if (newBlockType !== "W") {
-    const currentPlayerBlock = mazeDiv.children[playerPosition.y].children[playerPosition.x];
+    const currentPlayerBlock =
+      mazeDiv.children[playerPosition.y].children[playerPosition.x];
     currentPlayerBlock.classList.remove("start");
 
     const newPlayerBlock = mazeDiv.children[newRow].children[newBlock];
     newPlayerBlock.classList.add("start");
 
-    playerPosition = { x: newBlock, y: newRow }; // Update player position
+    playerPosition = { x: newBlock, y: newRow };
 
     if (newBlockType === "F") {
-      // Player reached the finish
       alert("Congratulations! You reached the finish!");
     }
   }
+}
+function switchMaze() {
+  currentMap = (currentMap + 1) % maps.length;
+  displayMaze();
 }
 
 document.addEventListener("keydown", movePlayer);
