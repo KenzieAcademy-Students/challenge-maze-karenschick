@@ -78,7 +78,7 @@ function displayMaze() {
     const rowDiv = document.createElement("div");
     rowDiv.classList.add("maze-row");
 
-    row.split("").forEach((blockStyle, columnIndex) => {
+    row.split("").forEach((blockStyle, columnIndex ) => {
       const block = document.createElement("div");
       block.classList.add("block");
 
@@ -91,10 +91,14 @@ function displayMaze() {
           break;
         case "S":
           block.classList.add("start");
-          playerPosition = { x: columnIndex, y: rowIndex }; // Update player position
+          playerPosition = { x: columnIndex, y: rowIndex };
           break;
         case "F":
           block.classList.add("finish");
+          break;
+        case "P":
+          block.classList.add("player");
+
           break;
       }
       rowDiv.appendChild(block);
@@ -133,18 +137,24 @@ function movePlayer(event) {
   if (newBlockType !== "W") {
     const currentPlayerBlock =
       mazeDiv.children[playerPosition.y].children[playerPosition.x];
-    currentPlayerBlock.classList.remove("start");
+    currentPlayerBlock.classList.remove("player");
 
     const newPlayerBlock = mazeDiv.children[newRow].children[newBlock];
-    newPlayerBlock.classList.add("start");
+    newPlayerBlock.classList.add("player");
 
     playerPosition = { x: newBlock, y: newRow };
 
     if (newBlockType === "F") {
-      alert("Congratulations! You reached the finish!");
+      displayMessage("Congratulations! You reached the finish!");
     }
   }
 }
+
+function displayMessage(message) {
+  const messageDiv = document.getElementById("message")
+  messageDiv.textContent = message
+}
+
 function switchMaze() {
   currentMap = (currentMap + 1) % maps.length;
   displayMaze();
