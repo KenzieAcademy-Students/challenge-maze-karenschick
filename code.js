@@ -78,7 +78,7 @@ function displayMaze() {
     const rowDiv = document.createElement("div");
     rowDiv.classList.add("maze-row");
 
-    row.split("").forEach((blockStyle, columnIndex ) => {
+    row.split("").forEach((blockStyle, columnIndex) => {
       const block = document.createElement("div");
       block.classList.add("block");
 
@@ -104,6 +104,9 @@ function displayMaze() {
     });
     mazeDiv.appendChild(rowDiv);
   });
+
+  const startBlock = mazeDiv.children[playerBlock.y].children[playerBlock.x]
+  startBlock.classList.add("player")
 }
 
 function movePlayer(event) {
@@ -150,8 +153,8 @@ function movePlayer(event) {
 }
 
 function displayMessage(message) {
-  const messageDiv = document.getElementById("message")
-  messageDiv.textContent = message
+  const messageDiv = document.getElementById("message");
+  messageDiv.textContent = message;
 }
 
 function switchMaze() {
