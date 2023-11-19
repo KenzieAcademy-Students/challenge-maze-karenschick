@@ -68,7 +68,7 @@ const mazeMap2 = [
 
 const maps = [mazeMap1, mazeMap2];
 let currentMap = 0;
-let playerPosition = { x: -1, y: -1 }; // Initialize with default values
+let playerBlock = { x: -1, y: -1 };
 const mazeDiv = document.getElementById("maze-div1");
 
 function displayMaze() {
@@ -91,14 +91,13 @@ function displayMaze() {
           break;
         case "S":
           block.classList.add("start");
-          playerPosition = { x: columnIndex, y: rowIndex };
+          playerBlock = { x: columnIndex, y: rowIndex };
           break;
         case "F":
           block.classList.add("finish");
           break;
         case "P":
           block.classList.add("player");
-
           break;
       }
       rowDiv.appendChild(block);
@@ -110,25 +109,25 @@ function displayMaze() {
 function movePlayer(event) {
   event.preventDefault();
 
-  if (playerPosition.x === -1 || playerPosition.y === -1) {
+  if (playerBlock.x === -1 || playerBlock.y === -1) {
     return;
   }
 
-  let newRow = playerPosition.y;
-  let newBlock = playerPosition.x;
+  let newRow = playerBlock.y;
+  let newBlock = playerBlock.x;
 
   switch (event.key) {
     case "ArrowLeft":
-      newBlock = playerPosition.x - 1;
+      newBlock = playerBlock.x - 1;
       break;
     case "ArrowRight":
-      newBlock = playerPosition.x + 1;
+      newBlock = playerBlock.x + 1;
       break;
     case "ArrowUp":
-      newRow = playerPosition.y - 1;
+      newRow = playerBlock.y - 1;
       break;
     case "ArrowDown":
-      newRow = playerPosition.y + 1;
+      newRow = playerBlock.y + 1;
       break;
   }
 
@@ -136,13 +135,13 @@ function movePlayer(event) {
 
   if (newBlockType !== "W") {
     const currentPlayerBlock =
-      mazeDiv.children[playerPosition.y].children[playerPosition.x];
+      mazeDiv.children[playerBlock.y].children[playerBlock.x];
     currentPlayerBlock.classList.remove("player");
 
     const newPlayerBlock = mazeDiv.children[newRow].children[newBlock];
     newPlayerBlock.classList.add("player");
 
-    playerPosition = { x: newBlock, y: newRow };
+    playerBlock = { x: newBlock, y: newRow };
 
     if (newBlockType === "F") {
       displayMessage("Congratulations! You reached the finish!");
