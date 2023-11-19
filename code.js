@@ -69,7 +69,7 @@ const mazeMap2 = [
 const maps = [mazeMap1, mazeMap2];
 let currentMap = 0;
 let playerBlock = { x: -1, y: -1 };
-const mazeDiv = document.getElementById("maze-div1");
+const mazeDiv = document.getElementById("maze-div");
 
 function displayMaze() {
   mazeDiv.innerHTML = "";
@@ -134,20 +134,29 @@ function movePlayer(event) {
       break;
   }
 
-  const newBlockType = maps[currentMap][newRow][newBlock];
+  if (
+    newRow >= 0 &&
+    newRow < maps[currentMap].length &&
+    newBlock >= 0 &&
+    newBlock < maps[currentMap][newRow].length
+  ) {
+    const newBlockType = maps[currentMap][newRow][newBlock];
 
-  if (newBlockType !== "W") {
-    const currentPlayerBlock =
-      mazeDiv.children[playerBlock.y].children[playerBlock.x];
-    currentPlayerBlock.classList.remove("player");
+    if (newBlockType !== "W") {
+      const currentPlayerBlock =
+        mazeDiv.children[playerBlock.y].children[playerBlock.x];
+      currentPlayerBlock.classList.remove("player");
 
-    const newPlayerBlock = mazeDiv.children[newRow].children[newBlock];
-    newPlayerBlock.classList.add("player");
+      const newPlayerBlock = mazeDiv.children[newRow].children[newBlock];
+      newPlayerBlock.classList.add("player");
 
-    playerBlock = { x: newBlock, y: newRow };
+      playerBlock = { x: newBlock, y: newRow };
 
-    if (newBlockType === "F") {
-      displayMessage("Congratulations! You reached the finish!");
+      if (newBlockType === "F") {
+        displayMessage("Congratulations! You reached the finish!");
+      } else{
+        displayMessage("");
+      }
     }
   }
 }
@@ -160,6 +169,7 @@ function displayMessage(message) {
 function switchMaze() {
   currentMap = (currentMap + 1) % maps.length;
   displayMaze();
+  displayMessage("");
 }
 
 document.addEventListener("keydown", movePlayer);
