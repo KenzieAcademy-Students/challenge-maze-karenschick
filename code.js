@@ -48,18 +48,18 @@ const mazeMap1 = [
 
 const mazeMap2 = [
   "WWWWWWWWWWWWWWWWWWWWW",
-  "W   W     W     W   W",
-  "W W W WWW WWWWW W WWW",
-  "W W W  W      W W   W",
-  "W WWWWWWW W WWW W W W",
-  "S         W     W W W",
+  "W   W   W       W W W",
+  "W W W WWW WWWWW W W W",
+  "S W W         W   W W",
+  "W W WWWWW W WWW W W W",
+  "W W       W     W   W",
   "W WWW WWWWW WWWWW W W",
-  "W W   W   W W     W W",
-  "W WWWWW W W W WWW W F",
-  "W     W W W W W W WWW",
+  "W W   W W W W     WWW",
+  "W W WWW W W W WWW   W",
+  "W     W   W W   W WWW",
   "WWWWW W W W W W W W W",
   "W     W W W   W W W W",
-  "W WWWWWWW WWWWW W W W",
+  "W WWWWW W WWWWW W W F",
   "W       W       W   W",
   "WWWWWWWWWWWWWWWWWWWWW",
 ];
@@ -78,7 +78,7 @@ function displayMaze() {
     const rowDiv = document.createElement("div");
     rowDiv.classList.add("maze-row");
 
-    row.split("").forEach((blockStyle, columnIndex ) => {
+    row.split("").forEach((blockStyle, columnIndex) => {
       const block = document.createElement("div");
       block.classList.add("block");
 
@@ -104,6 +104,9 @@ function displayMaze() {
     });
     mazeDiv.appendChild(rowDiv);
   });
+
+  const startBlock = mazeDiv.children[playerBlock.y].children[playerBlock.x]
+  startBlock.classList.add("player")
 }
 
 function movePlayer(event) {
@@ -150,8 +153,8 @@ function movePlayer(event) {
 }
 
 function displayMessage(message) {
-  const messageDiv = document.getElementById("message")
-  messageDiv.textContent = message
+  const messageDiv = document.getElementById("message");
+  messageDiv.textContent = message;
 }
 
 function switchMaze() {
