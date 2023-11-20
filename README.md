@@ -32,6 +32,4 @@
 
 ## Reflection
 
-What different approaches or techniques did you consider when planning your implementation? What were the advantages and disadvantages of those alternatives?
-
-Instead of using Switch statement, I could have used else/if condtionals. I chose to use a switch statement as they work evaluate only character or integer datatype. They are also faster than coniditonals and are more readable.
+Instead of using Switch statement, I could have used else/if conditional statements. I chose to use switch statements as they evaluate only character or integer datatype. They are also faster than if/else statements and are more readable.

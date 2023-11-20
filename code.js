@@ -48,23 +48,21 @@ const mazeMap1 = [
 
 const mazeMap2 = [
   "WWWWWWWWWWWWWWWWWWWWW",
-  "W   W   W       W W W",
+  "W   W   W       W   W",
   "W W W WWW WWWWW W W W",
   "S W W         W   W W",
   "W W WWWWW W WWW W W W",
-  "W W       W     W   W",
-  "W WWW WWWWW WWWWW W W",
-  "W W   W W W W     WWW",
-  "W W WWW W W W WWW   W",
-  "W     W   W W   W WWW",
-  "WWWWW W W W W W W W W",
-  "W     W W W   W W W W",
+  "W W       W     W W W",
+  "W WWW WWW WWWWWWW W W",
+  "W W   W W W W     W W",
+  "W W WWW W W WWWWW   W",
+  "W     W   W W   W W W",
+  "WWWWW W W   W W W W W",
+  "W     W WWW   W W W W",
   "W WWWWW W WWWWW W W F",
   "W       W       W   W",
   "WWWWWWWWWWWWWWWWWWWWW",
 ];
-
-// Your Code Here.
 
 const maps = [mazeMap1, mazeMap2];
 let currentMap = 0;
