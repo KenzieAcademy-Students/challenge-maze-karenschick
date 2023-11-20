@@ -8,10 +8,22 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
+h1 {
+  color: darkorange;
+  font-size: 50px;
+}
+
+#message {
+  font-size: large;
+  margin-bottom: 40px;
+  color: darkorange;
+}
 .maze-div {
   margin: 20px;
+  margin-bottom: 40px;
 }
 
 .maze-row {
@@ -27,26 +39,25 @@ body {
 }
 
 .wall {
-  background-color: blue;
+  background-color: green;
 }
 
 .floor {
   background-color: white;
 }
 
-.start {
-  background-color: yellow;
-   
-}
-
-.player{
-  background-color: limegreen;
-  border: 2px solid darkgreen;
+.player {
+  background-color: orange;
+  border: 2px solid darkorange;
   border-radius: 5px;
-  transition: background-color 0.3s ease; 
+  transition: background-color 0.3s ease;
 }
 
-
-.finish {
-  background-color:red
+#switchMapButton {
+  background-color: rgb(157, 238, 157);
+  padding: 10px;
+  border: 1px solid darkgreen;
+  border-radius: 5px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: large;
 }

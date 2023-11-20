@@ -105,8 +105,8 @@ function displayMaze() {
     mazeDiv.appendChild(rowDiv);
   });
 
-  const startBlock = mazeDiv.children[playerBlock.y].children[playerBlock.x]
-  startBlock.classList.add("player")
+  const startBlock = mazeDiv.children[playerBlock.y].children[playerBlock.x];
+  startBlock.classList.add("player");
 }
 
 function movePlayer(event) {
@@ -153,8 +153,8 @@ function movePlayer(event) {
       playerBlock = { x: newBlock, y: newRow };
 
       if (newBlockType === "F") {
-        displayMessage("Congratulations! You reached the finish!");
-      } else{
+        displayMessage("Congratulations! You've completed the maze!");
+      } else {
         displayMessage("");
       }
     }
