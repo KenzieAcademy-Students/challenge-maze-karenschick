@@ -151,7 +151,7 @@ function movePlayer(event) {
       playerBlock = { x: newBlock, y: newRow };
 
       if (newBlockType === "F") {
-        displayMessage("Congratulations! You've completed the maze!");
+        displayMessage("Congratulations! You've reached the end of the maze.");
       } else {
         displayMessage("");
       }
