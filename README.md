@@ -1,35 +1,77 @@
-# Kenzie Academy Challenge: Maze
+# 🧩 Kenzie Academy Challenge: Maze
 
-## Project Plan
+A browser-based maze game where a player can navigate through a maze using keyboard arrow keys. Built using JavaScript, HTML, and CSS.
 
-1. Create maze maps
-2. Display maze
- -maze div elements
- -displayMaze function
-  -clear exisiting content
-  -iterate through the maze using `for.Each` and create new row elements
-  -iterate through row elements and create new block element
-  -assign classlist to elements (wall, floor, start, finish) with a switch statement
-  -append block to the row
-  -append row to the mazeDiv
-  -set player block at start
-3. Move Player function
- -prevent default
- -check if player's position is initialized, if not return
- -update player position
-   -create new variables to track playerBlock x and y positions
-   -update new variables, `newRow` and `newBlock`, based on arrow key functions with switch statement
- -check if new position is within maze boundaries
- -check if new position is not a wall
-   -if not a wall:
-    - remove `"player"` class from current player block and add it to the new player block
-    -update player block with new position
- -check finish and display message
-4. displayMessage function  
-5. event listener to call movePlayer
-6. call `displayMaze()`
+---
 
+## 🗺️ Project Plan
 
-## Reflection
+### 1. Create Maze Maps
+- Define maze structure using nested arrays or grid data
 
-Instead of using Switch statement, I could have used else/if conditional statements. I chose to use switch statements as they evaluate only character or integer datatype. They are also faster than if/else statements and are more readable.
+### 2. Display Maze
+- Create a container (`mazeDiv`) to render maze blocks
+- Implement `displayMaze()` function:
+  - Clear any existing maze content
+  - Loop through maze rows with `forEach`
+    - Create a new `row` element
+    - Loop through each cell in the row
+      - Create a `block` element
+      - Assign class (e.g. `wall`, `floor`, `start`, `finish`) using a `switch` statement
+      - Append block to the row
+    - Append row to `mazeDiv`
+  - Set the player’s initial position at the start block
+
+### 3. Move Player
+- Add `movePlayer()` function:
+  - Prevent default arrow key behavior
+  - Ensure player's starting position is set
+  - Track player’s x and y position
+  - Update these positions (`newRow`, `newBlock`) based on arrow key input (using a `switch` statement)
+  - Check bounds to prevent moving outside the maze
+  - Check for walls:
+    - If not a wall:
+      - Remove `"player"` class from the old block
+      - Add `"player"` class to the new block
+      - Update player’s position
+  - If player reaches the finish block, display a win message
+
+### 4. Display Message
+- Create a `displayMessage()` function to show completion status or errors
+
+### 5. Add Event Listener
+- Listen for keyboard arrow key events
+- Call `movePlayer()` when keys are pressed
+
+### 6. Call `displayMaze()`
+- Run this function when the game loads to initialize the maze
+
+---
+
+## 💭 Reflection
+
+- I chose to use `switch` statements for checking directions and assigning classes because:
+  - They are more readable than multiple `if/else` conditions
+  - They are slightly more performant for evaluating character or integer inputs
+- I could have used `if/else` statements, but in this case, `switch` felt more organized and clearer
+
+---
+
+## ✅ Features
+
+- Dynamic maze rendering from an array
+- Keyboard-based player movement
+- Collision detection (walls, boundaries)
+- Win condition detection (reaches finish)
+- DOM manipulation using vanilla JavaScript
+
+---
+
+## 📌 To Improve or Extend
+
+- Add sound effects or animations
+- Implement multiple levels
+- Add timer or scoring system
+- Allow maze generation or randomization
+- Improve accessibility and responsiveness
+
